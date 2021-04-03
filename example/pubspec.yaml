@@ -1,5 +1,5 @@
 name: example
-description: Demonstration the usage of Global Mode.
+description: Demonstration the usage of Flutter Mediator Lite.
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 

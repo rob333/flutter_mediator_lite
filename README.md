@@ -1,21 +1,24 @@
 # Flutter Mediator Lite
 
+Lite:
 [![Pub](https://img.shields.io/pub/v/flutter_mediator_lite.svg)](https://pub.dev/packages/flutter_mediator_lite)
 [![MIT License](https://img.shields.io/github/license/rob333/flutter_mediator_lite.svg)](https://github.com/rob333/flutter_mediator_lite/blob/main/LICENSE)
+&nbsp; &nbsp;
+Flutter Mediator:
+[![Pub](https://img.shields.io/pub/v/flutter_mediator.svg)](https://pub.dev/packages/flutter_mediator)
+[![MIT License](https://img.shields.io/github/license/rob333/flutter_mediator.svg)](https://github.com/rob333/flutter_mediator/blob/main/LICENSE)
 
 Flutter Mediator Lite is a super easy state management package, base on the [InheritedModel][] with automatic aspect management to make it simpler and easier to use and rebuild widgets only when necessary.
 
 Derived from [Flutter Mediator][flutter_mediator] v2.1.3.
 
-<p align="center">
-<table border="0">
+<table border="0" align="center">
   <tr>
     <td>
       <img src="https://raw.githubusercontent.com/rob333/flutter_mediator_lite/main/doc/images/global_mode.gif">
     </td>
   </tr>
 </table>
-</p>
 
 <br>
 
@@ -338,8 +341,8 @@ class LocalePage extends StatelessWidget {
 
 - `globalBroadcast()`, to broadcast to all the globalConsume widgets.
 - `globalConsumeAll(Widget Function() create, {Key? key})`, to create a widget which will be rebuilt whenever any watched variables changes are made.
-- `globalFrameAspects`, a getter, to return the updated aspects of the Global Mode.
-- `globalAllAspects`, a getter, to return all the aspects that has been registered to the Global Mode.
+- `globalFrameAspects`, a getter, to return the updated aspects.
+- `globalAllAspects`, a getter, to return all the aspects that has been registered.
 
 <br>
 <br>

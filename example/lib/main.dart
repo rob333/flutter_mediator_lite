@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Mediator Global Mode Demo',
+      title: 'Flutter Mediator Lite Demo',
       theme: ThemeData(primarySwatch: Colors.blue),
       home: BottomNavigationWidget(
         pages: navPages,

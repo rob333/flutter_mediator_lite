@@ -41,8 +41,7 @@ class Subscriber extends StatelessWidget {
   }
 }
 
-/// A widget class for the `Global Mode`,
-/// to register them to the host with aspects.
+/// A widget class, to register them to the host with aspects.
 @immutable
 class SubscriberAuto extends StatelessWidget {
   const SubscriberAuto({

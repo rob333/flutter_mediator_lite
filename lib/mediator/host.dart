@@ -13,10 +13,10 @@ PublishFn get globalPublish => _globalPublish!;
 HashSet<Object>? _globalAllAspects;
 HashSet<Object>? _globalFrameAspects;
 
-/// Return the updated aspects of the `Global Mode`.
+/// Return the updated aspects.
 HashSet<Object> get globalFrameAspects => _globalFrameAspects!;
 
-/// Return all the aspects that has been registered to the `Global Mode`.
+/// Return all the aspects that has been registered.
 HashSet<Object> get globalAllAspects => _globalAllAspects!;
 
 ///
