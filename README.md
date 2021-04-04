@@ -3,14 +3,16 @@
 Lite:
 [![Pub](https://img.shields.io/pub/v/flutter_mediator_lite.svg)](https://pub.dev/packages/flutter_mediator_lite)
 [![MIT License](https://img.shields.io/github/license/rob333/flutter_mediator_lite.svg)](https://github.com/rob333/flutter_mediator_lite/blob/main/LICENSE)
+[![Build](https://github.com/rob333/flutter_mediator_lite/workflows/Build/badge.svg)](https://github.com/rob333/flutter_mediator_lite/actions)
 &nbsp; &nbsp;
 Flutter Mediator:
 [![Pub](https://img.shields.io/pub/v/flutter_mediator.svg)](https://pub.dev/packages/flutter_mediator)
 [![MIT License](https://img.shields.io/github/license/rob333/flutter_mediator.svg)](https://github.com/rob333/flutter_mediator/blob/main/LICENSE)
+[![Build](https://github.com/rob333/flutter_mediator/workflows/Build/badge.svg)](https://github.com/rob333/flutter_mediator/actions)
 
 Flutter Mediator Lite is a super easy state management package, base on the [InheritedModel][] with automatic aspect management to make it simpler and easier to use and rebuild widgets only when necessary.
 
-Derived from [Flutter Mediator][flutter_mediator] v2.1.3.
+Flutter Mediator Lite is derived from [Flutter Mediator][flutter_mediator] v2.1.3, and consists only of the Global Mode.
 
 <table border="0" align="center">
   <tr>
