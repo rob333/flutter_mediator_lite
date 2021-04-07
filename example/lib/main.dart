@@ -12,7 +12,11 @@ import 'var.dart';
 import 'widgets/bottom_navigation_controller.dart';
 import 'widgets/widget_extension.dart';
 
-void main() {
+Future<void> main() async {
+  //* Step1: initialize the watched variables
+  //* whose value is stored by SharedPreferences.
+  await initVars();
+
   runApp(
     //* Step2: Create the host with `globalHost`
     //* at the top of the widget tree.
@@ -73,9 +77,9 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: [
         FlutterI18nDelegate(
           translationLoader: FileTranslationLoader(
-            // forcedLocale: ,
+            forcedLocale: Locale(locale.value),
             // useCountryCode: true,
-            // fallbackFile: 'en',
+            fallbackFile: DefaultLocale,
             basePath: 'assets/flutter_i18n',
             decodeStrategies: [JsonDecodeStrategy()],
           ),

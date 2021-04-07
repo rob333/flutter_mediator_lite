@@ -15,6 +15,7 @@ dependencies:
   flutter_i18n: ^0.22.3
   flutter_mediator_lite:
     path: ../
+  shared_preferences: ^2.0.5
 
 dev_dependencies:
   flutter_test:

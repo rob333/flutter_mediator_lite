@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_mediator_lite/mediator.dart';
 
 //* Step1: import the var.dart
@@ -152,20 +151,6 @@ class _RadioGroupState extends State<RadioGroup> {
         ],
       ),
     );
-  }
-}
-
-Future<void> changeLocale(BuildContext context, String countryCode) async {
-  final loc = Locale(countryCode);
-  await FlutterI18n.refresh(context, loc);
-  //* Step4: Make an update to the watched variable.
-  locale.value = countryCode;
-}
-
-//* i18n extension
-extension StringI18n on String {
-  String i18n(BuildContext context) {
-    return FlutterI18n.translate(context, this);
   }
 }
 

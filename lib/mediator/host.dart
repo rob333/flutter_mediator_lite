@@ -10,14 +10,16 @@ typedef PublishFn = void Function([Object aspects]);
 PublishFn? _globalPublish;
 PublishFn get globalPublish => _globalPublish!;
 
-HashSet<Object>? _globalAllAspects;
-HashSet<Object>? _globalFrameAspects;
+// All aspects that has been registered to the Global Mode.
+final _globalAllAspects = HashSet<Object>();
+// Aspects to be updated in this frame time of the Global Mode.
+final _globalFrameAspects = HashSet<Object>();
 
-/// Return the updated aspects.
-HashSet<Object> get globalFrameAspects => _globalFrameAspects!;
+/// Return all the aspects that has been registered to the Global Mode.
+HashSet<Object> get globalAllAspects => _globalAllAspects;
 
-/// Return all the aspects that has been registered.
-HashSet<Object> get globalAllAspects => _globalAllAspects!;
+/// Return the updated aspects of the Global Mode.
+HashSet<Object> get globalFrameAspects => _globalFrameAspects;
 
 ///
 
@@ -62,15 +64,10 @@ class _HostState extends State<Host> {
 
   final Widget child;
 
-  // All aspects that has been registered.
-  final _regAspects = HashSet<Object>();
-  // Aspects to be updated in this frame time.
-  final _frameAspects = HashSet<Object>();
-
   /// Add [aspects] to the registered aspects of the model
   void addRegAspects(Iterable<Object>? aspects) {
     if (aspects != null) {
-      _regAspects.addAll(aspects);
+      _globalAllAspects.addAll(aspects);
     }
   }
 
@@ -83,18 +80,18 @@ class _HostState extends State<Host> {
       if (!element.dirty) {
         /// The widget is in a new frame time,
         /// clear previous processed frame aspects.
-        _frameAspects.clear();
+        _globalFrameAspects.clear();
       }
 
       if (aspects == null) {
         /// If aspect == null, then update all aspects.
-        _frameAspects.addAll(_regAspects);
+        _globalFrameAspects.addAll(_globalAllAspects);
       } else if (aspects is Iterable<Object>) {
-        _frameAspects.addAll(aspects);
+        _globalFrameAspects.addAll(aspects);
       } else if (aspects is RxImpl) {
-        _frameAspects.addAll(aspects.rxAspects);
+        _globalFrameAspects.addAll(aspects.rxAspects);
       } else {
-        _frameAspects.add(aspects);
+        _globalFrameAspects.add(aspects);
       }
     });
   }
@@ -103,15 +100,15 @@ class _HostState extends State<Host> {
   void initState() {
     super.initState();
     _globalPublish = _frameAspectListener;
-    _globalFrameAspects = _frameAspects;
-    _globalAllAspects = _regAspects;
+    _globalFrameAspects.clear();
+    _globalAllAspects.clear();
   }
 
   @override
   void dispose() {
     _globalPublish = null;
-    _globalFrameAspects = null;
-    _globalAllAspects = null;
+    _globalFrameAspects.clear();
+    _globalAllAspects.clear();
     super.dispose();
   }
 
@@ -119,7 +116,6 @@ class _HostState extends State<Host> {
   Widget build(BuildContext context) {
     return InheritedMediator(
       state: this,
-      frameAspect: _frameAspects,
       child: child,
     );
   }
@@ -134,14 +130,11 @@ class InheritedMediator extends InheritedWidget {
   const InheritedMediator({
     Key? key,
     required _HostState state,
-    required HashSet<Object> frameAspect,
     required Widget child,
   })   : _state = state,
-        _frameAspects = frameAspect,
         super(key: key, child: child);
 
   final _HostState _state;
-  final HashSet<Object> _frameAspects;
 
   // _HostState get state => _state;
 
@@ -156,7 +149,7 @@ class InheritedMediator extends InheritedWidget {
   @protected
   bool updateShouldNotifyDependent(
       InheritedMediator oldWidget, HashSet<Object> dependencies) {
-    return dependencies.intersection(_frameAspects).isNotEmpty;
+    return dependencies.intersection(_globalFrameAspects).isNotEmpty;
   }
 
   /*
