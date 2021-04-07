@@ -50,15 +50,13 @@ Future<void> changeLocale(BuildContext context, String countryCode) async {
   await prefs.setString('locale', countryCode);
 }
 
-/// String extension for i18n.
 extension StringI18n on String {
+  /// String extension for i18n.
   String i18n(BuildContext context) {
     return FlutterI18n.translate(context, this);
   }
-}
 
-/// String extension for i18n and `locale.consume` the widget.
-extension ConsumeI18n on String {
+  /// String extension for i18n and `locale.consume` the widget.
   Widget ci18n(BuildContext context, {TextStyle? style}) {
     return locale.consume(
       () => Text(FlutterI18n.translate(context, this), style: style),
