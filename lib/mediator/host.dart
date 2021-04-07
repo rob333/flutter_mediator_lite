@@ -43,16 +43,15 @@ class Host extends StatefulWidget {
     if (aspects == null || aspects.isEmpty) {
       InheritedMediator.inheritFrom<InheritedMediator>(context);
       // aspects is null, no need to `addRegAspects`
+      return;
     }
 
     InheritedMediator.inheritFrom<InheritedMediator>(context, aspect: aspects);
-    final inheritedModel = InheritedMediator.inheritFrom<InheritedMediator>(
-      context,
-      aspect: aspects,
-    );
-    assert(inheritedModel != null);
-    final state = inheritedModel!._state;
-    state.addRegAspects(aspects);
+
+    /// Add [aspects] to the registered aspects of the model
+    // if (aspects != null) {
+    _globalAllAspects.addAll(aspects);
+    // }
   }
 
   @override
@@ -63,13 +62,6 @@ class _HostState extends State<Host> {
   _HostState(this.child);
 
   final Widget child;
-
-  /// Add [aspects] to the registered aspects of the model
-  void addRegAspects(Iterable<Object>? aspects) {
-    if (aspects != null) {
-      _globalAllAspects.addAll(aspects);
-    }
-  }
 
   /// To `setState()` of the [Host] when any aspect publishs,
   /// to rebuild the descendant widgets by aspects.
@@ -115,7 +107,6 @@ class _HostState extends State<Host> {
   @override
   Widget build(BuildContext context) {
     return InheritedMediator(
-      state: this,
       child: child,
     );
   }
@@ -129,12 +120,10 @@ class InheritedMediator extends InheritedWidget {
   /// only be rebuilt if a specific aspect of the model changes.
   const InheritedMediator({
     Key? key,
-    required _HostState state,
     required Widget child,
-  })   : _state = state,
-        super(key: key, child: child);
+  }) : super(key: key, child: child);
 
-  final _HostState _state;
+  // final _HostState _state;
 
   // _HostState get state => _state;
 

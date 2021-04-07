@@ -1,3 +1,7 @@
+## 1.0.2
+
+- Minor improvement.
+
 ## 1.0.1
 
 - Fix problems when working with shared_preferences.

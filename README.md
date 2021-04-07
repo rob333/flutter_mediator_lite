@@ -30,7 +30,7 @@ Add the following dependency to pubspec.yaml of your flutter project:
 
 ```yaml
 dependencies:
-  flutter_mediator_lite: "^1.0.1"
+  flutter_mediator_lite: "^1.0.2"
 ```
 
 Import flutter_mediator_lite in files that will be used:
