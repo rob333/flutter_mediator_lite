@@ -3,13 +3,15 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_mediator_lite/mediator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+//* Declare a global scope SharedPreferences.
 late SharedPreferences prefs;
 
-//* Step1: Declare the watched variable with `globalWatch`.
+//* Step1A: Declare the watched variable with `globalWatch`.
 final touchCount = globalWatch(0, tag: 'tagCount'); // main.dart
 
 final data = globalWatch(<ListItem>[]); // list_page.dart
 
+//* Step1B: Declare the persistence watched variable with `late Rx<Type>`
 const DefaultLocale = 'en';
 late Rx<String> locale; // local_page.dart
 
@@ -27,8 +29,8 @@ class ListItem {
   final Color color;
 }
 
-/// Initialize the watched variables
-/// whose value is stored by SharedPreferences.
+/// Initialize the persistence watched variables
+/// whose value is stored by the SharedPreferences.
 Future<void>? initVars() async {
   // To make sure SharedPreferences works.
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,5 +54,14 @@ Future<void> changeLocale(BuildContext context, String countryCode) async {
 extension StringI18n on String {
   String i18n(BuildContext context) {
     return FlutterI18n.translate(context, this);
+  }
+}
+
+/// String extension for i18n and `locale.consume` the widget.
+extension ConsumeI18n on String {
+  Widget ci18n(BuildContext context, {TextStyle? style}) {
+    return locale.consume(
+      () => Text(FlutterI18n.translate(context, this), style: style),
+    );
   }
 }

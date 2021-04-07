@@ -30,7 +30,7 @@ Add the following dependency to pubspec.yaml of your flutter project:
 
 ```yaml
 dependencies:
-  flutter_mediator_lite: "^1.0.0"
+  flutter_mediator_lite: "^1.0.1"
 ```
 
 Import flutter_mediator_lite in files that will be used:
@@ -154,16 +154,59 @@ void updateListItem() {
 
 <br>
 
-### Case 3: Locale setting
+### Case 3: Locale setting and Persistence
 
 [example/lib/pages/locale_page.dart][]
 
-Step 1: [var.dart][example/lib/var.dart]
+Step 1-1: [var.dart][example/lib/var.dart]
 
 ```dart
-//* Step1: Declare the watched variable with `globalWatch` in the var.dart.
+//* Declare a global scope SharedPreferences.
+late SharedPreferences prefs;
+
+//* Step1B: Declare the persistence watched variable with `late Rx<Type>`
 //* And then import it in the file.
-final locale = globalWatch('en');
+const DefaultLocale = 'en';
+late Rx<String> locale; // local_page.dart
+
+/// Initialize the persistence watched variables
+/// whose value is stored by the SharedPreferences.
+Future<void>? initVars() async {
+  // To make sure SharedPreferences works.
+  WidgetsFlutterBinding.ensureInitialized();
+
+  prefs = await SharedPreferences.getInstance();
+  locale = globalWatch(prefs.getString('locale') ?? DefaultLocale);
+}
+```
+
+Step 1-2: [main.dart][example/lib/main.dart]
+
+```dart
+Future<void> main() async {
+  //* Step1-2: initialize the persistence watched variables
+  //* whose value is stored by the SharedPreferences.
+  await initVars();
+
+  runApp(
+    // ...
+  );
+}
+```
+
+Step 1-3: [main.dart][example/lib/main.dart]
+
+```dart
+//* Initial the locale with the persistence value.
+localizationsDelegates: [
+  FlutterI18nDelegate(
+    translationLoader: FileTranslationLoader(
+      forcedLocale: Locale(locale.value),
+      fallbackFile: DefaultLocale,
+      // ...
+    ),
+    // ...
+],
 ```
 
 Step 3:
@@ -185,7 +228,7 @@ return SizedBox(
 );
 ```
 
-Step 4:
+Step 4: [var.dart][example/lib/var.dart]
 
 ```dart
 Future<void> changeLocale(BuildContext context, String countryCode) async {
@@ -193,6 +236,8 @@ Future<void> changeLocale(BuildContext context, String countryCode) async {
   await FlutterI18n.refresh(context, loc);
   //* Step4: Make an update to the watched variable.
   locale.value = countryCode;
+
+  await prefs.setString('locale', countryCode);
 }
 ```
 
@@ -347,6 +392,14 @@ class LocalePage extends StatelessWidget {
 - `globalAllAspects`, a getter, to return all the aspects that has been registered.
 
 <br>
+
+## Example: Logins to a REST server
+
+A boilerplate example that logins to a REST server with i18n, theming, persistence and state management.
+
+Please see the [login to a REST server][loginrestexample] for details.
+
+<br>
 <br>
 
 [flutter_mediator]: https://github.com/rob333/flutter_mediator/
@@ -356,6 +409,7 @@ class LocalePage extends StatelessWidget {
 [example/lib/pages/list_page.dart]: https://github.com/rob333/flutter_mediator_lite/blob/main/example/lib/pages/list_page.dart
 [example/lib/pages/locale_page.dart]: https://github.com/rob333/flutter_mediator_lite/blob/main/example/lib/pages/locale_page.dart
 [example/lib/pages/scroll_page.dart]: https://github.com/rob333/flutter_mediator_lite/blob/main/example/lib/pages/scroll_page.dart
+[loginrestexample]: https://github.com/rob333/Flutter-logins-to-a-REST-server-with-i18n-theming-persistence-and-state-management
 
 ## Flow chart
 

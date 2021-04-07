@@ -13,8 +13,8 @@ import 'widgets/bottom_navigation_controller.dart';
 import 'widgets/widget_extension.dart';
 
 Future<void> main() async {
-  //* Step1: initialize the watched variables
-  //* whose value is stored by SharedPreferences.
+  //* Step1: initialize the persistence watched variables
+  //* whose value is stored by the SharedPreferences.
   await initVars();
 
   runApp(
