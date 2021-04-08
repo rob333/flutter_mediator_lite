@@ -1,5 +1,70 @@
 # Flutter Mediator Lite
 
+<table cellpadding="0" border="0">
+  <tr>
+    <td align="right">
+    Flutter Mediator
+    </td>
+    <td>
+    <a href="https://pub.dev/packages/flutter_mediator"><img src="https://img.shields.io/pub/v/flutter_mediator.svg" alt="pub.dev"></a>
+    </td>
+    <td>
+    <a href="https://github.com/rob333/flutter_mediator/blob/main/LICENSE"><img src="https://img.shields.io/github/license/rob333/flutter_mediator.svg" alt="License"></a>
+    </td>
+    <td>
+    <a href="https://github.com/rob333/flutter_mediator/actions"><img src="https://github.com/rob333/flutter_mediator/workflows/Build/badge.svg" alt="Build Status"></a>
+    </td>
+    <td>
+    Global Mode + Model Mode
+    </td>
+  </tr>
+  <tr>
+    <td align="right">
+    Lite
+    </td>
+    <td>
+    <a href="https://pub.dev/packages/flutter_mediator_lite"><img src="https://img.shields.io/pub/v/flutter_mediator_lite.svg" alt="pub.dev"></a>
+    </td>
+    <td>
+    <a href="https://github.com/rob333/flutter_mediator_lite/blob/main/LICENSE"><img src="https://img.shields.io/github/license/rob333/flutter_mediator_lite.svg" alt="License"></a>
+    </td>
+    <td>
+    <a href="https://github.com/rob333/flutter_mediator_lite/actions"><img src="https://github.com/rob333/flutter_mediator_lite/workflows/Build/badge.svg" alt="Build Status"></a>
+    </td>
+    <td>
+    Global Mode only
+    </td>
+  </tr>
+  <tr>
+    <td align="right">
+    Persistence
+    </td>
+    <td>
+    <a href="https://pub.dev/packages/flutter_mediator_persistence"><img src="https://img.shields.io/pub/v/flutter_mediator_persistence.svg" alt="pub.dev"></a>
+    </td>
+    <td>
+    <a href="https://github.com/rob333/flutter_mediator_persistence/blob/main/LICENSE"><img src="https://img.shields.io/github/license/rob333/flutter_mediator_persistence.svg" alt="License"></a>
+    </td>
+    <td>
+    <a href="https://github.com/rob333/flutter_mediator_persistence/actions"><img src="https://github.com/rob333/flutter_mediator_persistence/workflows/Build/badge.svg" alt="Build Status"></a>
+    </td>
+    <td>
+    Lite + Persistence
+    </td>
+  </tr>
+  <tr>
+    <td align="right">
+    Example
+    </td>
+    <td colspan="4">
+    <a href="https://github.com/rob333/Flutter-logins-to-a-REST-server-with-i18n-theming-persistence-and-state-management">Logins to a REST server with i18n, theming, persistence and state management.</a>
+    </td>
+  </tr>
+</table>
+
+<br>
+
+<!--
 Lite:
 [![Pub](https://img.shields.io/pub/v/flutter_mediator_lite.svg)](https://pub.dev/packages/flutter_mediator_lite)
 [![MIT License](https://img.shields.io/github/license/rob333/flutter_mediator_lite.svg)](https://github.com/rob333/flutter_mediator_lite/blob/main/LICENSE)
@@ -9,6 +74,7 @@ Flutter Mediator:
 [![Pub](https://img.shields.io/pub/v/flutter_mediator.svg)](https://pub.dev/packages/flutter_mediator)
 [![MIT License](https://img.shields.io/github/license/rob333/flutter_mediator.svg)](https://github.com/rob333/flutter_mediator/blob/main/LICENSE)
 [![Build](https://github.com/rob333/flutter_mediator/workflows/Build/badge.svg)](https://github.com/rob333/flutter_mediator/actions)
+-->
 
 Flutter Mediator Lite is a super easy state management package, base on the [InheritedModel][] with automatic aspect management to make it simpler and easier to use and rebuild widgets only when necessary.
 
@@ -154,7 +220,7 @@ void updateListItem() {
 
 <br>
 
-### Case 3: Locale setting and Persistence
+### Case 3: Locale setting and Persistence with SharedPreferences
 
 [example/lib/pages/locale_page.dart][]
 
@@ -393,16 +459,26 @@ class LocalePage extends StatelessWidget {
 
 <br>
 
+## Versions:
+
+- [Flutter Mediator][flutter_mediator]: Global Mode + Model Mode.
+- [Lite][]: Global Mode only.
+- [Persistence][]: Lite + Build in persistence.
+
+<br>
+
 ## Example: Logins to a REST server
 
 A boilerplate example that logins to a REST server with i18n, theming, persistence and state management.
 
-Please see the [login to a REST server][loginrestexample] for details.
+Please see the [login to a REST server example][loginrestexample] for details.
 
 <br>
 <br>
 
 [flutter_mediator]: https://github.com/rob333/flutter_mediator/
+[lite]: https://github.com/rob333/flutter_mediator_lite/
+[persistence]: https://github.com/rob333/flutter_mediator_persistence/
 [inheritedmodel]: https://api.flutter.dev/flutter/widgets/InheritedModel-class.html
 [example/lib/main.dart]: https://github.com/rob333/flutter_mediator_lite/blob/main/example/lib/main.dart
 [example/lib/var.dart]: https://github.com/rob333/flutter_mediator_lite/blob/main/example/lib/var.dart

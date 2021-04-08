@@ -4,6 +4,9 @@ import 'package:flutter_mediator_lite/mediator.dart';
 final touchCnt = globalWatch(0);
 
 void main() {
+  // for test to work with package that requires this line of code
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(
     TouchCntApp(),
   );

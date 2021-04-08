@@ -1,6 +1,6 @@
 name: flutter_mediator_lite
 description: A super easy state management package, base on the InheritedModel with automatic aspect management.
-version: 1.0.2
+version: 1.0.2+1
 homepage: https://github.com/rob333/flutter_mediator_lite
 
 environment:

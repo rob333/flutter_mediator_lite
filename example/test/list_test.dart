@@ -7,6 +7,9 @@ import 'package:flutter_mediator_lite/mediator.dart';
 import '../lib/var.dart' show data, ListItem;
 
 void main() {
+  // for test to work with package that requires this line of code
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(
     ListTestApp(),
   );
