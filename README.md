@@ -1,9 +1,9 @@
-# Flutter Mediator Lite <!-- omit in toc -->
+# Flutter Mediator Lite
 
 <table cellpadding="0" border="0">
   <tr>
     <td align="right">
-    Flutter Mediator
+    <a href="https://github.com/rob333/flutter_mediator">Flutter Mediator</a>
     </td>
     <td>
     <a href="https://pub.dev/packages/flutter_mediator"><img src="https://img.shields.io/pub/v/flutter_mediator.svg" alt="pub.dev"></a>
@@ -20,7 +20,7 @@
   </tr>
   <tr>
     <td align="right">
-    Lite
+    <a href="https://github.com/rob333/flutter_mediator_lite">Lite</a>
     </td>
     <td>
     <a href="https://pub.dev/packages/flutter_mediator_lite"><img src="https://img.shields.io/pub/v/flutter_mediator_lite.svg" alt="pub.dev"></a>
@@ -37,7 +37,7 @@
   </tr>
   <tr>
     <td align="right">
-    Persistence
+    <a href="https://github.com/rob333/flutter_mediator_persistence">Persistence</a>
     </td>
     <td>
     <a href="https://pub.dev/packages/flutter_mediator_persistence"><img src="https://img.shields.io/pub/v/flutter_mediator_persistence.svg" alt="pub.dev"></a>
@@ -88,11 +88,11 @@ Flutter Mediator Lite is derived from [Flutter Mediator][flutter_mediator] v2.1.
   </tr>
 </table>
 
+<br>
 <hr>
 
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
 - [Setting up](#setting-up)
 - [Steps](#steps)
   - [Case 1: Int](#case-1-int)
@@ -103,7 +103,6 @@ Flutter Mediator Lite is derived from [Flutter Mediator][flutter_mediator] v2.1.
 - [Global Get](#global-get)
   - [Case 1: By `Type`](#case-1-by-type)
   - [Case 2: By `tag`](#case-2-by-tag)
-  - [**Note**](#note)
 - [Global Broadcast](#global-broadcast)
 - [Versions](#versions)
 - [Example: Logins to a REST server](#example-logins-to-a-rest-server)
@@ -161,7 +160,11 @@ final touchCount = globalWatch(0);
 Step 2:
 
 ```dart
-void main() {
+Future<void> main() async {
+  //* Initialize the persistent watched variables
+  //* whose value is stored by the SharedPreferences.
+  await initVars();
+
   runApp(
     //* Step2: Create the host with `globalHost`
     //* at the top of the widget tree.
@@ -280,7 +283,7 @@ Step 1-2: [main.dart][example/lib/main.dart]
 
 ```dart
 Future<void> main() async {
-  //* Step1-2: initialize the persistent watched variables
+  //* Step1-2: Initialize the persistent watched variables
   //* whose value is stored by the SharedPreferences.
   await initVars();
 

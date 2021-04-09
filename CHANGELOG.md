@@ -1,3 +1,7 @@
+## 1.0.2+2
+
+- Update documents.
+
 ## 1.0.2+1
 
 - Update documents.

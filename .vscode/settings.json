@@ -1,6 +1,7 @@
 {
   "markdown.extension.toc.omittedFromToc": {
     "README.md": [
+      "# Flutter Mediator Lite",
       "## Table of Contents",
       "### **Note**"
     ]
