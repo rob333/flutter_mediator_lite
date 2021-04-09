@@ -11,7 +11,7 @@ final touchCount = globalWatch(0, tag: 'tagCount'); // main.dart
 
 final data = globalWatch(<ListItem>[]); // list_page.dart
 
-//* Step1B: Declare the persistence watched variable with `late Rx<Type>`
+//* Step1B: Declare the persistent watched variable with `late Rx<Type>`
 const DefaultLocale = 'en';
 late Rx<String> locale; // local_page.dart
 
@@ -29,9 +29,9 @@ class ListItem {
   final Color color;
 }
 
-/// Initialize the persistence watched variables
+/// Initialize the persistent watched variables
 /// whose value is stored by the SharedPreferences.
-Future<void>? initVars() async {
+Future<void> initVars() async {
   // To make sure SharedPreferences works.
   WidgetsFlutterBinding.ensureInitialized();
 

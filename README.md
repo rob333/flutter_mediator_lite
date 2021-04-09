@@ -1,4 +1,4 @@
-# Flutter Mediator Lite
+# Flutter Mediator Lite <!-- omit in toc -->
 
 <table cellpadding="0" border="0">
   <tr>
@@ -88,7 +88,31 @@ Flutter Mediator Lite is derived from [Flutter Mediator][flutter_mediator] v2.1.
   </tr>
 </table>
 
-<br>
+<hr>
+
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [Setting up](#setting-up)
+- [Steps](#steps)
+  - [Case 1: Int](#case-1-int)
+  - [Case 2: List](#case-2-list)
+  - [Case 3: Locale setting with Persistence by SharedPreferences](#case-3-locale-setting-with-persistence-by-sharedpreferences)
+  - [Case 4: Scrolling effect](#case-4-scrolling-effect)
+- [Recap](#recap)
+- [Global Get](#global-get)
+  - [Case 1: By `Type`](#case-1-by-type)
+  - [Case 2: By `tag`](#case-2-by-tag)
+  - [**Note**](#note)
+- [Global Broadcast](#global-broadcast)
+- [Versions](#versions)
+- [Example: Logins to a REST server](#example-logins-to-a-rest-server)
+- [Flow chart](#flow-chart)
+- [Flutter Widget of the Week: InheritedModel explained](#flutter-widget-of-the-week-inheritedmodel-explained)
+- [Changelog](#changelog)
+- [License](#license)
+
+<hr>
 
 ## Setting up
 
@@ -107,9 +131,9 @@ import 'package:flutter_mediator_lite/mediator.dart';
 
 For help getting started with Flutter, view the online [documentation](https://flutter.dev/docs).
 
-<br />
+&emsp; [Table of Contents]
 
-## Steps:
+## Steps
 
 1. Declare the watched variable with `globalWatch`.
    <br>**Suggest to put the watched variables into a file [var.dart][example/lib/var.dart] and then import it.**
@@ -119,6 +143,8 @@ For help getting started with Flutter, view the online [documentation](https://f
 3. Create a widget with `globalConsume` or `watchedVar.consume` to register the watched variable to the host to rebuild it when updating.
 
 4. Make an update to the watched variable, by `watchedVar.value` or `watchedVar.ob.updateMethod(...)`.
+
+&emsp; [Table of Contents]
 
 ### Case 1: Int
 
@@ -178,7 +204,7 @@ FloatingActionButton(
 ),
 ```
 
-<br>
+&emsp; [Table of Contents]
 
 ### Case 2: List
 
@@ -218,9 +244,13 @@ void updateListItem() {
 }
 ```
 
-<br>
+&emsp; [Table of Contents]
 
-### Case 3: Locale setting and Persistence with SharedPreferences
+### Case 3: Locale setting with Persistence by SharedPreferences
+
+> Or use [Flutter Mediator Persistence][persistence] for built in persistence support.
+> <br>
+> Please see [Flutter Mediator Persistence: use case 3][persistence_use_case3] for details.
 
 [example/lib/pages/locale_page.dart][]
 
@@ -230,14 +260,14 @@ Step 1-1: [var.dart][example/lib/var.dart]
 //* Declare a global scope SharedPreferences.
 late SharedPreferences prefs;
 
-//* Step1B: Declare the persistence watched variable with `late Rx<Type>`
+//* Step1B: Declare the persistent watched variable with `late Rx<Type>`
 //* And then import it in the file.
 const DefaultLocale = 'en';
 late Rx<String> locale; // local_page.dart
 
-/// Initialize the persistence watched variables
+/// Initialize the persistent watched variables
 /// whose value is stored by the SharedPreferences.
-Future<void>? initVars() async {
+Future<void> initVars() async {
   // To make sure SharedPreferences works.
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -250,7 +280,7 @@ Step 1-2: [main.dart][example/lib/main.dart]
 
 ```dart
 Future<void> main() async {
-  //* Step1-2: initialize the persistence watched variables
+  //* Step1-2: initialize the persistent watched variables
   //* whose value is stored by the SharedPreferences.
   await initVars();
 
@@ -263,7 +293,7 @@ Future<void> main() async {
 Step 1-3: [main.dart][example/lib/main.dart]
 
 ```dart
-//* Initial the locale with the persistence value.
+//* Initialize the locale with the persistent value.
 localizationsDelegates: [
   FlutterI18nDelegate(
     translationLoader: FileTranslationLoader(
@@ -272,6 +302,7 @@ localizationsDelegates: [
       // ...
     ),
     // ...
+  ),
 ],
 ```
 
@@ -307,7 +338,7 @@ Future<void> changeLocale(BuildContext context, String countryCode) async {
 }
 ```
 
-<br>
+&emsp; [Table of Contents]
 
 ### Case 4: Scrolling effect
 
@@ -356,7 +387,7 @@ class _ScrollPageState extends State<ScrollPage> {
   }
 ```
 
-<br>
+&emsp; [Table of Contents]
 
 ## Recap
 
@@ -368,7 +399,7 @@ class _ScrollPageState extends State<ScrollPage> {
 
 - At step 4, update to the `watchedVar.value` will notify the host to rebuild; or the underlying object would be a class, then use `watchedVar.ob.updateMethod(...)` to notify the host to rebuild. <br>**`watchedVar.ob = watchedVar.notify() and then return the underlying object`.**
 
-<br>
+&emsp; [Table of Contents]
 
 ## Global Get
 
@@ -378,7 +409,7 @@ class _ScrollPageState extends State<ScrollPage> {
 
 - With `globalWatch(variable, tag: object)`, the watched variable will be retrieved by the tag, i.e. retrieve by `globalGet(tag: object)`.
 
-<br>
+&emsp; [Table of Contents]
 
 ### Case 1: By `Type`
 
@@ -408,7 +439,7 @@ class LocalePage extends StatelessWidget {
       // ...
 ```
 
-<br>
+&emsp; [Table of Contents]
 
 ### Case 2: By `tag`
 
@@ -448,7 +479,7 @@ class LocalePage extends StatelessWidget {
 
 > Or put the watched variables into a file and then import it.
 
-<br>
+&emsp; [Table of Contents]
 
 ## Global Broadcast
 
@@ -457,15 +488,15 @@ class LocalePage extends StatelessWidget {
 - `globalFrameAspects`, a getter, to return the updated aspects.
 - `globalAllAspects`, a getter, to return all the aspects that has been registered.
 
-<br>
+&emsp; [Table of Contents]
 
-## Versions:
+## Versions
 
 - [Flutter Mediator][flutter_mediator]: Global Mode + Model Mode.
 - [Lite][]: Global Mode only.
-- [Persistence][]: Lite + Build in persistence.
+- [Persistence][]: Lite + built in persistence.
 
-<br>
+&emsp; [Table of Contents]
 
 ## Example: Logins to a REST server
 
@@ -473,12 +504,15 @@ A boilerplate example that logins to a REST server with i18n, theming, persisten
 
 Please see the [login to a REST server example][loginrestexample] for details.
 
-<br>
+&emsp; [Table of Contents]
+
 <br>
 
+[table of contents]: #table-of-contents
 [flutter_mediator]: https://github.com/rob333/flutter_mediator/
 [lite]: https://github.com/rob333/flutter_mediator_lite/
 [persistence]: https://github.com/rob333/flutter_mediator_persistence/
+[persistence_use_case3]: https://github.com/rob333/flutter_mediator_persistence#case-3-locale-setting-with-built-in-persistence
 [inheritedmodel]: https://api.flutter.dev/flutter/widgets/InheritedModel-class.html
 [example/lib/main.dart]: https://github.com/rob333/flutter_mediator_lite/blob/main/example/lib/main.dart
 [example/lib/var.dart]: https://github.com/rob333/flutter_mediator_lite/blob/main/example/lib/var.dart
@@ -508,8 +542,10 @@ alt="Flutter Widget of the Week: InheritedModel Explained" /></a></p>
 
 Please see the [Changelog](https://github.com/rob333/flutter_mediator_lite/blob/main/CHANGELOG.md) page.
 
-<br />
+<br>
 
 ## License
 
 Flutter Mediator Lite is distributed under the MIT License. See [LICENSE](https://github.com/rob333/flutter_mediator_lite/blob/main/LICENSE) for more information.
+
+&emsp; [Table of Contents]
