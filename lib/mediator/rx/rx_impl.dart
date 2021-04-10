@@ -200,7 +200,7 @@ class RxImpl<T> {
     }
   }
 
-  /// Alias of `publishRxAspects()`.
+  /// Synonym of `publishRxAspects()`.
   void notify() => publishRxAspects();
 
   //* override method
