@@ -103,6 +103,7 @@ Flutter Mediator Lite is derived from [Flutter Mediator][flutter_mediator] v2.1.
 - [Global Get](#global-get)
   - [Case 1: By `Type`](#case-1-by-type)
   - [Case 2: By `tag`](#case-2-by-tag)
+  - [**Note**](#note)
 - [Global Broadcast](#global-broadcast)
 - [Versions](#versions)
 - [Example: Logins to a REST server](#example-logins-to-a-rest-server)
