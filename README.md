@@ -103,7 +103,6 @@ Flutter Mediator Lite is derived from [Flutter Mediator][flutter_mediator] v2.1.
 - [Global Get](#global-get)
   - [Case 1: By `Type`](#case-1-by-type)
   - [Case 2: By `tag`](#case-2-by-tag)
-  - [**Note**](#note)
 - [Global Broadcast](#global-broadcast)
 - [Versions](#versions)
 - [Example: Logins to a REST server](#example-logins-to-a-rest-server)
@@ -310,6 +309,16 @@ localizationsDelegates: [
 ],
 ```
 
+Step 1-4: add assets in [pubspec.yaml][] and prepare locale files in the [folder][flutter_i18n]
+
+```yaml
+flutter:
+  # ...
+  assets:
+    - assets/images/
+    - assets/flutter_i18n/
+```
+
 Step 3:
 
 ```dart
@@ -322,7 +331,8 @@ return SizedBox(
       //* `touch()` itself first and then `globalConsume`.
       locale.consume(() => Text('${'app.hello'.i18n(context)} ')),
       Text('$name, '),
-
+      //* Or use the ci18n extension
+      'app.thanks'.ci18n(context),
       // ...
     ],
   ),
@@ -333,12 +343,14 @@ Step 4: [var.dart][example/lib/var.dart]
 
 ```dart
 Future<void> changeLocale(BuildContext context, String countryCode) async {
-  final loc = Locale(countryCode);
-  await FlutterI18n.refresh(context, loc);
-  //* Step4: Make an update to the watched variable.
-  locale.value = countryCode;
+  if (countryCode != locale.value) {
+    final loc = Locale(countryCode);
+    await FlutterI18n.refresh(context, loc);
+    //* Step4: Make an update to the watched variable.
+    locale.value = countryCode; // will rebuild the registered widget
 
-  await prefs.setString('locale', countryCode);
+    await prefs.setString('locale', countryCode);
+  }
 }
 ```
 
@@ -524,6 +536,8 @@ Please see the [login to a REST server example][loginrestexample] for details.
 [example/lib/pages/locale_page.dart]: https://github.com/rob333/flutter_mediator_lite/blob/main/example/lib/pages/locale_page.dart
 [example/lib/pages/scroll_page.dart]: https://github.com/rob333/flutter_mediator_lite/blob/main/example/lib/pages/scroll_page.dart
 [loginrestexample]: https://github.com/rob333/Flutter-logins-to-a-REST-server-with-i18n-theming-persistence-and-state-management
+[pubspec.yaml]: https://github.com/rob333/flutter_mediator_lite/blob/main/example/pubspec.yaml
+[flutter_i18n]: https://github.com/rob333/flutter_mediator_lite/tree/main/example/assets/flutter_i18n
 
 ## Flow chart
 

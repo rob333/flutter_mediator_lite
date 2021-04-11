@@ -42,12 +42,14 @@ Future<void> initVars() async {
 /// Change the locale, by `String`[countryCode]
 /// and store the setting with SharedPreferences.
 Future<void> changeLocale(BuildContext context, String countryCode) async {
-  final loc = Locale(countryCode);
-  await FlutterI18n.refresh(context, loc);
-  //* Step4: Make an update to the watched variable.
-  locale.value = countryCode;
+  if (countryCode != locale.value) {
+    final loc = Locale(countryCode);
+    await FlutterI18n.refresh(context, loc);
+    //* Step4: Make an update to the watched variable.
+    locale.value = countryCode; // will rebuild the registered widget
 
-  await prefs.setString('locale', countryCode);
+    await prefs.setString('locale', countryCode);
+  }
 }
 
 extension StringI18n on String {
@@ -56,7 +58,8 @@ extension StringI18n on String {
     return FlutterI18n.translate(context, this);
   }
 
-  /// String extension for i18n and `locale.consume` the widget.
+  /// String extension for i18n and `locale.consume` the widget
+  /// to register the widget for the state management.
   Widget ci18n(BuildContext context, {TextStyle? style}) {
     return locale.consume(
       () => Text(FlutterI18n.translate(context, this), style: style),
