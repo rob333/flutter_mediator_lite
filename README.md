@@ -119,7 +119,7 @@ Add the following dependency to pubspec.yaml of your flutter project:
 
 ```yaml
 dependencies:
-  flutter_mediator_lite: "^1.0.2"
+  flutter_mediator_lite: "^1.0.3"
 ```
 
 Import flutter_mediator_lite in files that will be used:
@@ -139,7 +139,7 @@ For help getting started with Flutter, view the online [documentation](https://f
 
 2. Create the host with `globalHost` at the top of the widget tree.
 
-3. Create a widget with `globalConsume` or `watchedVar.consume` to register the watched variable to the host to rebuild it when updating.
+3. Create a consume widget with `globalConsume` or `watchedVar.consume` to register the watched variable to the host to rebuild it when updating.
 
 4. Make an update to the watched variable, by `watchedVar.value` or `watchedVar.ob.updateMethod(...)`.
 
@@ -149,7 +149,7 @@ For help getting started with Flutter, view the online [documentation](https://f
 
 [example/lib/main.dart][]
 
-Step 1: [var.dart][example/lib/var.dart]
+Step 1: Declare variable in [var.dart][example/lib/var.dart].
 
 ```dart
 //* Step1: Declare the watched variable with `globalWatch`
@@ -157,7 +157,7 @@ Step 1: [var.dart][example/lib/var.dart]
 final touchCount = globalWatch(0);
 ```
 
-Step 2:
+Step 2: Initialize the persistent watched variable and create the `Host`.
 
 ```dart
 Future<void> main() async {
@@ -175,7 +175,7 @@ Future<void> main() async {
 }
 ```
 
-Step 3:
+Step 3: Create a consume widget.
 
 ```dart
 Scaffold(
@@ -184,8 +184,9 @@ Scaffold(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       const Text('You have pushed the button this many times:'),
-      //* Step3: Create a widget with `globalConsume` or `watchedVar.consume`
-      //* to register the watched variable to the host to rebuild it when updating.
+      //* Step3: Create a consume widget with
+      //* `globalConsume` or `watchedVar.consume` to register the
+      //* watched variable to the host to rebuild it when updating.
       globalConsume(
         () => Text(
           '${touchCount.value}',
@@ -195,7 +196,7 @@ Scaffold(
    // ...
 ```
 
-Step 4:
+Step 4: Implement update function.
 
 ```dart
 FloatingActionButton(
@@ -213,7 +214,7 @@ FloatingActionButton(
 
 [example/lib/pages/list_page.dart][]
 
-Step 1: [var.dart][example/lib/var.dart]
+Step 1: Declare variable in [var.dart][example/lib/var.dart].
 
 ```dart
 //* Step1: Declare the watched variable with `globalWatch` in the var.dart.
@@ -221,13 +222,14 @@ Step 1: [var.dart][example/lib/var.dart]
 final data = globalWatch(<ListItem>[]);
 ```
 
-Step 3:
+Step 3: Create consume widget.
 
 ```dart
 return Scaffold(
   appBar: AppBar(title: const Text('List Demo')),
-  //* Step3: Create a widget with `globalConsume` or `watchedVar.consume`
-  //* to register the watched variable to the host to rebuild it when updating.
+  //* Step3: Create a consume widget with
+  //* `globalConsume` or `watchedVar.consume` to register the
+  //* watched variable to the host to rebuild it when updating.
   body: globalConsume(
     () => GridView.builder(
       itemCount: data.value.length,
@@ -235,7 +237,7 @@ return Scaffold(
     // ...
 ```
 
-Step 4:
+Step 4: Implement update function.
 
 ```dart
 void updateListItem() {
@@ -257,7 +259,7 @@ void updateListItem() {
 
 [example/lib/pages/locale_page.dart][]
 
-Step 1-1: [var.dart][example/lib/var.dart]
+Step 1-1: Declare variable in [var.dart][example/lib/var.dart].
 
 ```dart
 //* Declare a global scope SharedPreferences.
@@ -279,7 +281,7 @@ Future<void> initVars() async {
 }
 ```
 
-Step 1-2: [main.dart][example/lib/main.dart]
+Step 1-2: Initialize the persistent watched variables in [main.dart][example/lib/main.dart].
 
 ```dart
 Future<void> main() async {
@@ -293,7 +295,7 @@ Future<void> main() async {
 }
 ```
 
-Step 1-3: [main.dart][example/lib/main.dart]
+Step 1-3: Initialize the locale in [main.dart][example/lib/main.dart].
 
 ```dart
 //* Initialize the locale with the persistent value.
@@ -309,7 +311,7 @@ localizationsDelegates: [
 ],
 ```
 
-Step 1-4: add assets in [pubspec.yaml][] and prepare locale files in the [folder][flutter_i18n]
+Step 1-4: Add assets in [pubspec.yaml][] and prepare locale files in the [folder][flutter_i18n]
 
 ```yaml
 flutter:
@@ -319,14 +321,15 @@ flutter:
     - assets/flutter_i18n/
 ```
 
-Step 3:
+Step 3: Create consume widget
 
 ```dart
 return SizedBox(
   child: Row(
     children: [
-      //* Step3: Create a widget with `globalConsume` or `watchedVar.consume`
-      //* to register the watched variable to the host to rebuild it when updating.
+      //* Step3: Create a consume widget with
+      //* `globalConsume` or `watchedVar.consume` to register the
+      //* watched variable to the host to rebuild it when updating.
       //* `watchedVar.consume()` is a helper function to
       //* `touch()` itself first and then `globalConsume`.
       locale.consume(() => Text('${'app.hello'.i18n(context)} ')),
@@ -339,7 +342,7 @@ return SizedBox(
 );
 ```
 
-Step 4: [var.dart][example/lib/var.dart]
+Step 4: Implement update function in [var.dart][example/lib/var.dart].
 
 ```dart
 Future<void> changeLocale(BuildContext context, String countryCode) async {
@@ -360,7 +363,7 @@ Future<void> changeLocale(BuildContext context, String countryCode) async {
 
 [example/lib/pages/scroll_page.dart][]
 
-Step 1: [var.dart][example/lib/var.dart]
+Step 1: Declare variable in [var.dart][example/lib/var.dart].
 
 ```dart
 //* Step1: Declare the watched variable with `globalWatch` in the var.dart.
@@ -368,14 +371,15 @@ Step 1: [var.dart][example/lib/var.dart]
 final opacityValue = globalWatch(0.0);
 ```
 
-Step 3:
+Step 3: Create consume widget.
 
 ```dart
 class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //* Step3: Create a widget with `globalConsume` or `watchedVar.consume`
-    //* to register the watched variable to the host to rebuild it when updating.
+    //* Step3: Create a consume widget with
+    //* `globalConsume` or `watchedVar.consume` to register the
+    //* watched variable to the host to rebuild it when updating.
     return globalConsume(
       () => Container(
         color: Colors.black.withOpacity(opacityValue.value),
@@ -386,7 +390,7 @@ class CustomAppBar extends StatelessWidget {
 }
 ```
 
-Step 4:
+Step 4: Add an offset change listener.
 
 ```dart
 class _ScrollPageState extends State<ScrollPage> {
@@ -409,15 +413,17 @@ class _ScrollPageState extends State<ScrollPage> {
 
 - At step 1, `globalWatch(variable)` creates a watched variable from the variable.
 
-- At step 3, create a widget and register it to the host to rebuild it when updating,
-  <br> use `globalConsume(() => widget)` if the value of the watched variable is used inside the widget;
-  <br>or use `watchedVar.consume(() => widget)` to `touch()` the watched variable itself first and then `globalConsume(() => widget)`.
+- At step 3, create a consume widget and register it to the host to rebuild it when updating,
+  <br> use **`globalConsume(() => widget)`** **if the value of the watched variable is used inside the consume widget**;
+  <br>or use **`watchedVar.consume(() => widget)`** to `touch()` the watched variable itself first and then `globalConsume(() => widget)`.
 
 - At step 4, update to the `watchedVar.value` will notify the host to rebuild; or the underlying object would be a class, then use `watchedVar.ob.updateMethod(...)` to notify the host to rebuild. <br>**`watchedVar.ob = watchedVar.notify() and then return the underlying object`.**
 
 &emsp; [Table of Contents]
 
 ## Global Get
+
+> Note: Suggest to put the watched variables into a file [var.dart][example/lib/var.dart] and then import it.
 
 `globalGet<T>({Object? tag})` to retrieve the watched variable from another file.
 
@@ -493,14 +499,12 @@ class LocalePage extends StatelessWidget {
 
 - **When using `Type` to retrieve the watched variable, only the first one of the `Type` is returned.**
 
-> Or put the watched variables into a file and then import it.
-
 &emsp; [Table of Contents]
 
 ## Global Broadcast
 
-- `globalBroadcast()`, to broadcast to all the globalConsume widgets.
-- `globalConsumeAll(Widget Function() create, {Key? key})`, to create a widget which will be rebuilt whenever any watched variables changes are made.
+- `globalBroadcast()`, to broadcast to all the consume widgets.
+- `globalConsumeAll(Widget Function() create, {Key? key})`, to create a consume widget which will be rebuilt whenever any watched variables changes are made.
 - `globalFrameAspects`, a getter, to return the updated aspects.
 - `globalAllAspects`, a getter, to return all the aspects that has been registered.
 

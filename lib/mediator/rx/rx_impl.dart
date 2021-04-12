@@ -96,11 +96,14 @@ class RxImpl<T> {
     }
   }
 
-  /// Notify the host to rebuild and then return the underlying object.
-  /// Suitable for class type _value, like List, Map, Set, classes
-  /// To inform the value to update.
-  /// Like if the value type is a List, you can do `var.ob.add(1)` to notify the host to rebuild.
-  /// Or, you can manually notify the host to rebuild by `var.value.add(1); var.notify();`.
+  /// Notify the host to rebuild related consume widget and then return
+  /// the underlying object.
+  ///
+  /// Suitable for class type [_value], like List, Map, Set, and class.
+  ///
+  /// ex. var is a int List: `<int>[]`,
+  ///
+  ///     var.ob.add(1); // to notify the host to rebuild related consume widget.
   T get ob {
     publishRxAspects();
     return _value;
