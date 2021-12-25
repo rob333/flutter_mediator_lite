@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.example">
+    package="com.example.example_global_mode">
    <application
-        android:label="example"
+        android:label="example_global_mode"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
