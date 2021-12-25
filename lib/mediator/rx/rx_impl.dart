@@ -1,9 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_mediator_lite/mediator.dart';
 
-import '../assert.dart';
-import '../global.dart';
-
 /// A proxy object class, for variables to turn into a watched one.
 class RxImpl<T> {
   /// Constructor: add self to the static rx container

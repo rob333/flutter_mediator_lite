@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_mediator_lite/mediator.dart';
 
 //* Step1: import the var.dart
