@@ -1,4 +1,4 @@
-package com.example.example_global_mode
+package com.example.example
 
 import io.flutter.embedding.android.FlutterActivity
 
