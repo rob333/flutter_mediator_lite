@@ -93,23 +93,24 @@ Flutter Mediator Lite is derived from [Flutter Mediator][flutter_mediator] v2.1.
 
 ## Table of Contents
 
-- [Setting up](#setting-up)
-- [Steps](#steps)
-  - [Case 1: Int](#case-1-int)
-  - [Case 2: List](#case-2-list)
-  - [Case 3: Locale setting with Persistence by SharedPreferences](#case-3-locale-setting-with-persistence-by-sharedpreferences)
-  - [Case 4: Scrolling effect](#case-4-scrolling-effect)
-- [Recap](#recap)
-- [Global Get](#global-get)
-  - [Case 1: By `Type`](#case-1-by-type)
-  - [Case 2: By `tag`](#case-2-by-tag)
-- [Global Broadcast](#global-broadcast)
-- [Versions](#versions)
-- [Example: Logins to a REST server](#example-logins-to-a-rest-server)
-- [Flow chart](#flow-chart)
-- [Flutter Widget of the Week: InheritedModel explained](#flutter-widget-of-the-week-inheritedmodel-explained)
-- [Changelog](#changelog)
-- [License](#license)
+- [Flutter Mediator Lite](#flutter-mediator-lite)
+  - [Setting up](#setting-up)
+  - [Steps](#steps)
+    - [Case 1: Int](#case-1-int)
+    - [Case 2: List](#case-2-list)
+    - [Case 3: Locale setting with Persistence by SharedPreferences](#case-3-locale-setting-with-persistence-by-sharedpreferences)
+    - [Case 4: Scrolling effect](#case-4-scrolling-effect)
+  - [Recap](#recap)
+  - [Global Get](#global-get)
+    - [Case 1: By `Type`](#case-1-by-type)
+    - [Case 2: By `tag`](#case-2-by-tag)
+  - [Global Broadcast](#global-broadcast)
+  - [Versions](#versions)
+  - [Example: Logins to a REST server](#example-logins-to-a-rest-server)
+  - [Flow chart](#flow-chart)
+  - [Flutter Widget of the Week: InheritedModel explained](#flutter-widget-of-the-week-inheritedmodel-explained)
+  - [Changelog](#changelog)
+  - [License](#license)
 
 <hr>
 
@@ -190,7 +191,7 @@ Scaffold(
       globalConsume(
         () => Text(
           '${touchCount.value}',
-          style: Theme.of(context).textTheme.headline4,
+          style: Theme.of(context).textTheme.headlineMedium,
         ),
       ),
    // ...
