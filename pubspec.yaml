@@ -4,8 +4,8 @@ version: 1.0.3
 homepage: https://github.com/rob333/flutter_mediator_lite
 
 environment:
-  sdk: ">=2.14.0 <3.0.0"
-  flutter: ">=2.8.0"
+  sdk: ">=2.14.0 <4.0.0"
+  flutter: ">=3.0.0"
 
 dependencies:
   flutter:

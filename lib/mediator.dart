@@ -1,5 +1,3 @@
-library flutter_mediator_lite;
-
 export 'mediator/assert.dart';
 export 'mediator/global.dart';
 export 'mediator/host.dart';
