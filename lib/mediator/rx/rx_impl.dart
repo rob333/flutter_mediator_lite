@@ -242,7 +242,7 @@ class RxImpl<T> {
 }
 
 /// Rx<T> class
-class Rx<T> extends RxImpl<T> {
+final class Rx<T> extends RxImpl<T> {
   /// Constructor: With `initial` as the initial value.
   Rx(T initial) : super(initial);
 }
